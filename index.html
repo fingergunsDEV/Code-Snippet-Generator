@@ -1,0 +1,106 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Snippet Generator</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="importmap">
+    {
+        "imports": {
+            "prismjs": "https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+        }
+    }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+</head>
+<body>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <span class="sidebar-title">Template Variables</span>
+            <button class="sidebar-close" id="sidebar-close" aria-label="Close sidebar">×</button>
+        </div>
+        <div class="variable-inputs" id="variable-inputs">
+            <!-- Dynamic inputs will be inserted here -->
+        </div>
+        <div class="sidebar-section">
+            <h3>Saved Components</h3>
+            <div id="saved-components" class="saved-components-list">
+                <!-- Saved components will be listed here -->
+            </div>
+        </div>
+    </div>
+    
+    <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle variable menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+    </button>
+    
+    <main class="app-container main-content">
+        <h1>Code Snippet Generator</h1>
+        
+        <div class="template-controls">
+            <div class="template-filter">
+                <label for="category-filter">Filter by category:</label>
+                <select id="category-filter" aria-label="Filter templates by category">
+                    <option value="all">All Categories</option>
+                </select>
+            </div>
+            
+            <div class="template-selector">
+                <label for="template-select">Select Template:</label>
+                <select id="template-select" aria-label="Choose a code template">
+                    <option value="">Choose a template...</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="split-layout">
+            <div class="code-section">
+                <h2>Generated Code</h2>
+                <div class="preview-code">
+                    <pre aria-live="polite"><code id="preview" class="language-javascript"></code></pre>
+                </div>
+                <div class="code-actions">
+                    <button id="copy-btn" aria-label="Copy code to clipboard">Copy Code</button>
+                    <button id="add-to-builder" aria-label="Add to component builder">Add to Builder</button>
+                </div>
+            </div>
+            
+            <div class="preview-section">
+                <div class="preview-tabs">
+                    <button class="preview-tab active" data-tab="preview">HTML Preview</button>
+                    <button class="preview-tab" data-tab="builder">Component Builder</button>
+                </div>
+                
+                <div class="tab-content" data-tab="preview" style="display: block;">
+                    <div class="device-controls">
+                        <button class="device-button active" data-device="desktop">Desktop</button>
+                        <button class="device-button" data-device="tablet">Tablet</button>
+                        <button class="device-button" data-device="mobile">Mobile</button>
+                    </div>
+                    <div class="preview-device desktop">
+                        <iframe id="preview-iframe" title="HTML Preview" sandbox="allow-same-origin allow-scripts"></iframe>
+                    </div>
+                </div>
+                
+                <div class="tab-content" data-tab="builder" style="display: none;">
+                    <div class="builder-controls">
+                        <button id="save-component">Save Component</button>
+                        <button id="clear-builder">Clear Builder</button>
+                    </div>
+                    <div class="component-builder-container">
+                        <div id="component-builder" class="component-builder" contenteditable="true"></div>
+                        <div class="builder-preview">
+                            <iframe id="builder-preview-iframe" title="Builder Preview" sandbox="allow-same-origin allow-scripts"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script type="module" src="main.js"></script>
+</body>
+</html>
